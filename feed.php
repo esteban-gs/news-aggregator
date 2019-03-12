@@ -4,7 +4,6 @@ session_start();
 include 'includes/feed_inc.php';
 
 
-
 //****** C A T E G O R Y   S E L E C T O R ******//
 
 if(isset($_POST['cat'])){
@@ -50,7 +49,7 @@ if($_SESSION['counter'] < 2){
     //print a summary of new feed action
     $myWarning = '
     <div class="alert alert-dismissible alert-danger">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <button onclick="this.parentElement.style.display = \'none\';" type="button" class="close" data-dismiss="alert">&times;</button>
       <strong>session was created. The Session created time is: ' . date("h:i:sa", $_SESSION['timestamp']) . ' </strong>
     </div> 
     ';    
@@ -61,7 +60,7 @@ else{
     {
         $myWarning = '
         <div "alert alert-dismissible alert-warning">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <button onclick="this.parentElement.style.display = \'none\';" type="button" class="close" data-dismiss="alert">&times;</button>
           <strong>Time to refresh!!!!!</strong>
         </div> 
         ';
@@ -99,7 +98,7 @@ else{
     
     $myWarning = '
     <div class="alert alert-dismissible alert-danger">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <button onclick="this.parentElement.style.display = \'none\';" type="button" class="close" data-dismiss="alert">&times;</button>
       <strong>Session already exists the session was created at '. date("h:i:sa", $_SESSION['timestamp']) . ' seconds. The Session will refresh at: ' . date("h:i:sa", $_SESSION['refreshTime']) . '</strong>
     </div> 
     ';
@@ -177,5 +176,6 @@ showForm($myFeedView['articleCounter']); // Show category menu
     ?>
 
 
+    
 </body>
 </html>
