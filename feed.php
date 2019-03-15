@@ -15,6 +15,7 @@ if(isset($_GET['id']))
 {//process data
     //cast the data to an integer, for security purposes
     $id =  htmlentities($_GET['id']);
+    var_dump($id);
 }else{//redirect to safe page
     header('Location:feeds.php');
 }
@@ -167,7 +168,7 @@ echo $myWarning;
 
     }else{//show form
     echo'
-    <form action="test.php" method="post">    
+    <form action="feed.php?id=science" method="post">    
     <button class="btn btn-danger" name="destroy" type="submit" value="destroy">session_destroy()</button>
     </form>
     ';
