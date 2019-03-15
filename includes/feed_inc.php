@@ -46,24 +46,6 @@ function getFeedView()
 }
 
 
-function showForm($articleCount){
-    $myResult = '
-    <form action="" method="post">
-        <ul class="list-group" style="max-width: 20%;">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <button class="list-group-item list-group-item-action name="cat" type="submit" value="science">Science</button>
-                    <span class="badge badge-primary badge-pill">
-                        ' . $articleCount . '
-                    </span>
-            </li>
-        </ul>
-    </form>
-    
-    ';
-    
-    echo $myResult;
-}
-
 
 
 ?>

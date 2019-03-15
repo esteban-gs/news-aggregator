@@ -4,20 +4,23 @@ session_start();
 include 'includes/feed_inc.php';
 
 
-//****** C A T E G O R Y   S E L E C T O R ******//
-
-if(isset($_POST['cat'])){
-    $myActiveClass = 'active';
-}
-
-
 /*
 session_destroy();
 echo '<span class="badge badge-pill badge-danger">Success!</span>';
 die();
 */
 
-///looks like problem is in functions
+//process querystring here
+if(isset($_GET['id']))
+{//process data
+    //cast the data to an integer, for security purposes
+    $id =  htmlentities($_GET['id']);
+}else{//redirect to safe page
+    header('Location:feeds.php');
+}
+
+
+
 echo 'session count before adding a counter ' . $_SESSION['counter'] . '<br>';
 
 
@@ -33,7 +36,7 @@ if($_SESSION['counter'] < 2){
     echo 'Welcome. This is a NEW session<br>';
     
     //get feed and save in session var
-    getFeed('science');    
+    getFeed($id);    
     
     //get htmlView from feed
     $myFeedView = getFeedView();
@@ -133,10 +136,10 @@ else{
 //print a summary of new feed action
 echo $myWarning;
 
-//print a summary of cached feed action
-//echo $myCachedWarning;
+
     
-showForm($myFeedView['articleCounter']); // Show category menu
+//******  ******//
+
     
 ?> 
 
