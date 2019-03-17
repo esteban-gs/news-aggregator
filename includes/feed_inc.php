@@ -14,7 +14,7 @@ function getFeed($aTopic)
     $_SESSION['rawFeed'] = file_get_contents($_SESSION['request']);   
     
     $_SESSION['timestamp'] = time(); // create timestamp
-    $_SESSION['refreshTime'] = $_SESSION['timestamp'] + 60; //create refresh time
+    $_SESSION['refreshTime'] = $_SESSION['timestamp'] + 10; //create refresh time
     //var_dump($_SESSION['request']);
 }
 

@@ -17,34 +17,29 @@ if(isset($_GET['id']))
     $id =  htmlentities($_GET['id']);
     var_dump($id);
 }else{//redirect to safe page
-    header('Location:feeds.php');
+    header('Location:feeds_list.php');
 }
 
 
+echo 'is timestamp set? ';
+echo isset($_SESSION['timestamp']);
+echo '<br>';
 
-echo 'session count before adding a counter ' . $_SESSION['counter'] . '<br>';
-
-
-if(!isset($_SESSION['counter'])) {
-    $_SESSION['counter'] = 0;
-}
-
-$_SESSION['counter']++;
-
-if($_SESSION['counter'] < 2){
+if(!isset($_SESSION['timestamp'])){
     //************New session**************/
     
     echo 'Welcome. This is a NEW session<br>';
     
     //get feed and save in session var
     getFeed($id);    
-    
+    echo 'is timestamp set? ';
+echo isset($_SESSION['timestamp']);
+echo '<br>';
+
     //get htmlView from feed
     $myFeedView = getFeedView();
     
     $myFeedView['feedState'] = 'fresh';
-    
-    echo 'session count after getFeed ' . $_SESSION['counter'] . '<br>' ;
     
     echo '<pre>';
     //var_dump($myFeed);
@@ -68,8 +63,8 @@ else{
           <strong>Time to refresh!!!!!</strong>
         </div> 
         ';
-
-        $_SESSION['counter'] = 0; // reset counter
+        //force this value to unset
+        unset($_SESSION['timestamp']);
         //header("Refresh:0"); // refresh page
         echo '<script>window.location.reload()</script>';
         
@@ -77,7 +72,6 @@ else{
    
     //*************echo cached session*****************//
     echo 'This is a cached session<br>';
-    echo 'session count after ' . $_SESSION['counter'] . '<br>';
     //get a cached feed
     
     //get html view from raw session var, rawFeed 
@@ -161,14 +155,13 @@ echo $myWarning;
     {//destroy session
         echo '<span class="badge badge-pill badge-danger">Success!</span>';
         session_destroy();
-        $_SESSION['counter'] = 0;
-        
         //refresh to same page        
-        echo("<meta http-equiv='refresh' content='1'>"); //Refresh by HTTP META
+        echo '<script>window.location.reload()</script>';
+       // unset($_SESSION['timestamp']);
 
     }else{//show form
     echo'
-    <form action="feed.php?id=science" method="post">    
+    <form action="feed_view.php?id=science" method="post">    
     <button class="btn btn-danger" name="destroy" type="submit" value="destroy">session_destroy()</button>
     </form>
     ';
