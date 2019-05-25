@@ -2,8 +2,9 @@
 session_name( 'feeds' );
 session_start();
 include 'includes/feed_inc.php';
-
-
+# '../' works for a sub-folder.  use './' for the root  
+require '../inc_0700/config_inc.php'; #provides configuration, pathing, error handling, db credentials
+get_header(); #defaults to header_inc.php
 /*
 session_destroy();
 echo '<span class="badge badge-pill badge-danger">Success!</span>';
@@ -176,3 +177,6 @@ echo $myWarning;
     
 </body>
 </html>
+<?php
+get_footer(); #defaults to footer_inc.php
+?>
